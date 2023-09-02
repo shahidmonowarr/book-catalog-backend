@@ -2,7 +2,7 @@ import { User } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import prisma from '../../../shared/prisma';
 
-const signUpService = async (data: User): Promise<User> => {
+const signUpService = async (data: User): Promise<Partial<User>> => {
   const isExist = await prisma.user.findFirst({
     where: {
       email: data.email,
@@ -25,7 +25,10 @@ const signUpService = async (data: User): Promise<User> => {
     throw new Error('User not created');
   }
 
-  return result;
+  // eslint-disable-next-line no-unused-vars
+  const { password, ...userWithoutPassword } = result;
+
+  return userWithoutPassword;
 };
 
 export const authService = {

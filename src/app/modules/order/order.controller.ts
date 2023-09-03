@@ -7,8 +7,6 @@ import { orderService } from './order.service';
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const user = req.user;
 
-  console.log(user);
-
   const result = await orderService.insertIntoDB(user, req.body);
 
   sendResponse(res, {

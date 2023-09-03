@@ -20,10 +20,10 @@ model User {
   address    String
   profileImg String
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  reviews   Review[]
-  orders    Order[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  orders           Order[]
+  reviewAndRatings ReviewAndRating[]
 
   @@map("users")
 }
@@ -39,22 +39,22 @@ model Category {
 }
 
 model Book {
-  id              String   @id @default(uuid())
-  title           String
-  genre           String
-  price           Float
-  author          String
-  publicationDate String
-  categoryId      String
-  category        Category @relation(fields: [categoryId], references: [id])
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  reviews         Review[]
+  id               String            @id @default(uuid())
+  title            String
+  genre            String
+  price            Float
+  author           String
+  publicationDate  String
+  categoryId       String
+  category         Category          @relation(fields: [categoryId], references: [id])
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  reviewAndRatings ReviewAndRating[]
 
   @@map("books")
 }
 
-model Review {
+model ReviewAndRating {
   id        String   @id @default(uuid())
   review    String
   rating    Int

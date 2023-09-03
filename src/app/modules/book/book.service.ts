@@ -106,7 +106,47 @@ const getAllFromDB = async (
   };
 };
 
+const getOneFromDB = async (id: string) => {
+  const result = await prisma.book.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      category: true,
+    },
+  });
+
+  return result;
+};
+
+const updateOneInDB = async (id: string, book: Partial<Book>) => {
+  const result = await prisma.book.update({
+    where: {
+      id,
+    },
+    data: book,
+    include: {
+      category: true,
+    },
+  });
+
+  return result;
+};
+
+const deleteOneFromDB = async (id: string) => {
+  const result = await prisma.book.delete({
+    where: {
+      id,
+    },
+  });
+
+  return result;
+};
+
 export const bookService = {
   insertIntoDB,
   getAllFromDB,
+  getOneFromDB,
+  updateOneInDB,
+  deleteOneFromDB,
 };

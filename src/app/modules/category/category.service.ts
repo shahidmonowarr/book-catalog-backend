@@ -28,6 +28,9 @@ const getOneFromDB = async (id: string) => {
     where: {
       id,
     },
+    include: {
+      books: true,
+    },
   });
 
   if (!result) {

@@ -1,0 +1,56 @@
+Sun Sep 03 2023 11:44:10 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.book.findMany()` invocation:
+
+{
+  include: {
+    category: true
+  },
+  where: {
+    AND: [
+      {
+        AND: [
+          {
+            search: {
+              equals: "scifi"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  skip: 0,
+  take: 10,
+  orderBy: {
+    createdAt: "desc"
+  }
+}
+
+Unknown argument `search`. Available options are listed in green.
+Sun Sep 03 2023 11:45:23 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.book.findMany()` invocation:
+
+{
+  include: {
+    category: true
+  },
+  where: {
+    AND: [
+      {
+        AND: [
+          {
+            category: {
+              equals: "dc4c8fe1-c4b9-4809-ae0b-52445931766f"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  skip: 0,
+  take: 10,
+  orderBy: {
+    createdAt: "desc"
+  }
+}
+
+Unknown argument `equals`. Available options are listed in green.

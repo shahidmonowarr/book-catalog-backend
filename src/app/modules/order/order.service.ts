@@ -34,6 +34,44 @@ const insertIntoDB = async (user: any, payload: any): Promise<Order | null> => {
   return result;
 };
 
+const getAllOrders = async (user: any) => {
+  const { id, role } = user;
+
+  const isUserExist = await prisma.user.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (!isUserExist) {
+    throw new ApiError(httpStatus.BAD_REQUEST, `User not found`);
+  }
+
+  if (role === 'admin') {
+    const orders = await prisma.order.findMany({
+      include: {
+        user: true,
+      },
+    });
+
+    return orders;
+  }
+
+  if (role === 'customer') {
+    const orders = await prisma.order.findMany({
+      where: {
+        userId: id,
+      },
+      include: {
+        user: true,
+      },
+    });
+
+    return orders;
+  }
+};
+
 export const orderService = {
   insertIntoDB,
+  getAllOrders,
 };

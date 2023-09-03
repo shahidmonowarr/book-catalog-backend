@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
+import { paginationFields } from '../../../constants/pagination';
 import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
@@ -68,10 +69,26 @@ const deleteOneFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getBooksByCategory = catchAsync(async (req: Request, res: Response) => {
+  const { categoryId } = req.params;
+  const options = pick(req.query, paginationFields);
+  //   const filters = pick(req.query, BookFilterAbleFields);
+  const result = await bookService.getBooksByCategory(categoryId, options);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Books with associated category data fetched successfully',
+    meta: result.meta,
+    data: result.data,
+  });
+});
+
 export const bookController = {
   insertIntoDB,
   getAllFromDB,
   getOneFromDB,
   updateOneInDB,
   deleteOneFromDB,
+  getBooksByCategory,
 };

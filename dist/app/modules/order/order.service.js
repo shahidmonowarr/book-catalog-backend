@@ -49,20 +49,13 @@ const getAllOrders = (user) => __awaiter(void 0, void 0, void 0, function* () {
         throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, `User not found`);
     }
     if (role === 'admin') {
-        const orders = yield prisma_1.default.order.findMany({
-            include: {
-                user: true,
-            },
-        });
+        const orders = yield prisma_1.default.order.findMany({});
         return orders;
     }
     if (role === 'customer') {
         const orders = yield prisma_1.default.order.findMany({
             where: {
                 userId: id,
-            },
-            include: {
-                user: true,
             },
         });
         return orders;

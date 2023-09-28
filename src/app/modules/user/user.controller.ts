@@ -10,7 +10,7 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Users fetched successfully',
+    message: 'Users retrieved successfully',
     data: result,
   });
 });
@@ -22,7 +22,7 @@ const getUserById = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'User fetched successfully',
+    message: 'User retrieved successfully',
     data: result,
   });
 });

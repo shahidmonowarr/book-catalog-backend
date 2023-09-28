@@ -64,12 +64,9 @@ const signInService = (payload) => __awaiter(void 0, void 0, void 0, function* (
         throw new Error('Invalid Password');
     }
     // creating access token
-    const accessToken = jwtHelpers_1.jwtHelpers.createToken({ email: user.email, role: user.role, id: user.id }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
-    // creating refresh token
-    const refreshToken = jwtHelpers_1.jwtHelpers.createToken({ email: user.email, role: user.role, id: user.id }, config_1.default.jwt.refresh_secret, config_1.default.jwt.refresh_expires_in);
+    const token = jwtHelpers_1.jwtHelpers.createToken({ email: user.email, role: user.role, id: user.id }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
     return {
-        accessToken,
-        refreshToken,
+        token,
     };
 });
 exports.authService = {

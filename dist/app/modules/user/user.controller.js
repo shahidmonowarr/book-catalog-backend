@@ -22,7 +22,7 @@ const getAllUsers = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Users fetched successfully',
+        message: 'Users retrieved successfully',
         data: result,
     });
 }));
@@ -32,7 +32,7 @@ const getUserById = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'User fetched successfully',
+        message: 'User retrieved successfully',
         data: result,
     });
 }));

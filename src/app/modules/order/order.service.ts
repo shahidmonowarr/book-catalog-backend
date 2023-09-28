@@ -48,11 +48,7 @@ const getAllOrders = async (user: any) => {
   }
 
   if (role === 'admin') {
-    const orders = await prisma.order.findMany({
-      include: {
-        user: true,
-      },
-    });
+    const orders = await prisma.order.findMany({});
 
     return orders;
   }
@@ -61,9 +57,6 @@ const getAllOrders = async (user: any) => {
     const orders = await prisma.order.findMany({
       where: {
         userId: id,
-      },
-      include: {
-        user: true,
       },
     });
 

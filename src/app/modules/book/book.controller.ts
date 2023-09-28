@@ -11,7 +11,7 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const result = await bookService.insertIntoDB(req.body);
 
   sendResponse(res, {
-    statusCode: httpStatus.CREATED,
+    statusCode: httpStatus.OK,
     success: true,
     message: 'Book created successfully',
     data: result,

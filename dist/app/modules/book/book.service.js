@@ -129,9 +129,6 @@ const updateOneInDB = (id, book) => __awaiter(void 0, void 0, void 0, function* 
             id,
         },
         data: book,
-        include: {
-            category: true,
-        },
     });
     return result;
 });
@@ -148,6 +145,9 @@ const getBooksByCategory = (id, options) => __awaiter(void 0, void 0, void 0, fu
     const result = yield prisma_1.default.book.findMany({
         where: {
             categoryId: id,
+        },
+        include: {
+            category: true,
         },
         skip,
         take: size,

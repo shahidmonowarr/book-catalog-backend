@@ -11,17 +11,14 @@ datasource db {
 }
 
 model User {
-  id         String @id @default(uuid())
-  name       String
-  email      String @unique
-  password   String
-  role       Role   @default(customer)
-  contactNo  String
-  address    String
-  profileImg String
-
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
+  id               String            @id @default(uuid())
+  name             String
+  email            String            @unique
+  password         String
+  role             Role              @default(customer)
+  contactNo        String
+  address          String
+  profileImg       String
   orders           Order[]
   reviewAndRatings ReviewAndRating[]
 
@@ -29,11 +26,9 @@ model User {
 }
 
 model Category {
-  id        String   @id @default(uuid())
-  title     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  books     Book[]
+  id    String @id @default(uuid())
+  title String
+  books Book[]
 
   @@map("categories")
 }
@@ -47,23 +42,20 @@ model Book {
   publicationDate  String
   categoryId       String
   category         Category          @relation(fields: [categoryId], references: [id])
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
   reviewAndRatings ReviewAndRating[]
+  createdAt        DateTime          @default(now())
 
   @@map("books")
 }
 
 model ReviewAndRating {
-  id        String   @id @default(uuid())
-  review    String
-  rating    Int
-  userId    String
-  bookId    String
-  user      User     @relation(fields: [userId], references: [id])
-  book      Book     @relation(fields: [bookId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id     String @id @default(uuid())
+  review String
+  rating Int
+  userId String
+  bookId String
+  user   User   @relation(fields: [userId], references: [id])
+  book   Book   @relation(fields: [bookId], references: [id])
 
   @@map("reviews")
 }
@@ -75,7 +67,6 @@ model Order {
   orderedBooks Json
   status       Status   @default(pending)
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
 
   @@map("orders")
 }

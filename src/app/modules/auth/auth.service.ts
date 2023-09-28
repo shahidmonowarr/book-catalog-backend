@@ -57,22 +57,14 @@ const signInService = async (
   }
 
   // creating access token
-  const accessToken = jwtHelpers.createToken(
+  const token = jwtHelpers.createToken(
     { email: user.email, role: user.role, id: user.id },
     config.jwt.secret as Secret,
     config.jwt.expires_in as string
   );
 
-  // creating refresh token
-  const refreshToken = jwtHelpers.createToken(
-    { email: user.email, role: user.role, id: user.id },
-    config.jwt.refresh_secret as Secret,
-    config.jwt.refresh_expires_in as string
-  );
-
   return {
-    accessToken,
-    refreshToken,
+    token,
   };
 };
 

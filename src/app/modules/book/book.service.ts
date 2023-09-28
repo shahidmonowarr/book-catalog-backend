@@ -127,9 +127,6 @@ const updateOneInDB = async (id: string, book: Partial<Book>) => {
       id,
     },
     data: book,
-    include: {
-      category: true,
-    },
   });
 
   return result;
@@ -154,6 +151,9 @@ const getBooksByCategory = async (
   const result = await prisma.book.findMany({
     where: {
       categoryId: id,
+    },
+    include: {
+      category: true,
     },
     skip,
     take: size,

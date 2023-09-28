@@ -3,6 +3,6 @@ export type ISignInUser = {
   password: string;
 };
 export type ISignInUserResponse = {
-  accessToken: string;
+  token: string;
   refreshToken?: string;
 };
